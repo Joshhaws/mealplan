@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @ingredient.name
+p
+  strong Quantity:
+  = @ingredient.quantity
+p
+  strong Meal:
+  = @ingredient.meal
+p
+  strong Estimated cost:
+  = @ingredient.estimated_cost
+
+= link_to 'Edit', edit_ingredient_path(@ingredient)
+'  |
+= link_to 'Back', ingredients_path

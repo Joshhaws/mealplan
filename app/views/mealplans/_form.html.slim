@@ -1,0 +1,15 @@
+= form_for @mealplan do |f|
+  - if @mealplan.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@mealplan.errors.count, "error")} prohibited this mealplan from being saved:"
+      ul
+        - @mealplan.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :mealplan_week
+    = f.datetime_select :mealplan_week
+  .field
+    = f.label :user
+    = f.text_field :user
+  .actions = f.submit

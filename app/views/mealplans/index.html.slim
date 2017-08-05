@@ -1,0 +1,23 @@
+h1 Listing mealplans
+
+table
+  thead
+    tr
+      th Mealplan week
+      th User
+      th
+      th
+      th
+
+  tbody
+    - @mealplans.each do |mealplan|
+      tr
+        td = mealplan.mealplan_week
+        td = mealplan.user
+        td = link_to 'Show', mealplan
+        td = link_to 'Edit', edit_mealplan_path(mealplan)
+        td = link_to 'Destroy', mealplan, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Mealplan', new_mealplan_path

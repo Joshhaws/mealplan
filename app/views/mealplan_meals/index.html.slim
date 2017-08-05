@@ -1,0 +1,25 @@
+h1 Listing mealplan_meals
+
+table
+  thead
+    tr
+      th Meal
+      th Mealpan
+      th Meal
+      th
+      th
+      th
+
+  tbody
+    - @mealplan_meals.each do |mealplan_meal|
+      tr
+        td = mealplan_meal.meal
+        td = mealplan_meal.mealpan
+        td = mealplan_meal.meal
+        td = link_to 'Show', mealplan_meal
+        td = link_to 'Edit', edit_mealplan_meal_path(mealplan_meal)
+        td = link_to 'Destroy', mealplan_meal, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Mealplan meal', new_mealplan_meal_path

@@ -1,0 +1,1 @@
+json.array! @mealplan_meals, partial: 'mealplan_meals/mealplan_meal', as: :mealplan_meal

@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Meal:
+  = @mealplan_meal.meal
+p
+  strong Mealpan:
+  = @mealplan_meal.mealpan
+p
+  strong Meal:
+  = @mealplan_meal.meal
+
+= link_to 'Edit', edit_mealplan_meal_path(@mealplan_meal)
+'  |
+= link_to 'Back', mealplan_meals_path
