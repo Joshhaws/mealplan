@@ -1,0 +1,8 @@
+.tile.nested-fields
+  h3 Meal
+  .field
+    = f.label :meal
+    = f.select :meal_id, options_for_select(Meal.all.map { |d| [ d.name, d.id] })
+    = f.hidden_field :mealplan, value: @mealplan.id
+
+  = link_to_remove_association "Remove This Meal", f

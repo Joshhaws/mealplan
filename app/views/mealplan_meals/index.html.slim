@@ -3,8 +3,7 @@ h1 Listing mealplan_meals
 table
   thead
     tr
-      th Meal
-      th Mealpan
+      th Mealplan
       th Meal
       th
       th
@@ -13,8 +12,7 @@ table
   tbody
     - @mealplan_meals.each do |mealplan_meal|
       tr
-        td = mealplan_meal.meal
-        td = mealplan_meal.mealpan
+        td = mealplan_meal.mealplan
         td = mealplan_meal.meal
         td = link_to 'Show', mealplan_meal
         td = link_to 'Edit', edit_mealplan_meal_path(mealplan_meal)

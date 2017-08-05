@@ -24,7 +24,7 @@ class MealplansController < ApplicationController
   # POST /mealplans
   # POST /mealplans.json
   def create
-    @mealplan = Mealplan.new(mealplan_params)
+    @mealplan = Mealplan.new(mealplan_params.merge(user: current_user))
 
     respond_to do |format|
       if @mealplan.save
@@ -69,6 +69,6 @@ class MealplansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mealplan_params
-      params.require(:mealplan).permit(:mealplan_week, :user_id)
+      params.require(:mealplan).permit(:mealplan_week, :user_id, mealplan_meals_attributes: [:id, :meal_id, :_destroy])
     end
 end

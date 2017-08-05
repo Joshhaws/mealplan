@@ -9,7 +9,9 @@
   .field
     = f.label :mealplan_week
     = f.datetime_select :mealplan_week
-  .field
-    = f.label :user
-    = f.text_field :user
+  #mealplan_meals
+    = f.fields_for :mealplan_meals do |mealplan_meal|
+      = render 'mealplan_meal_fields', f: mealplan_meal
+    .links
+      = link_to_add_association '+ Add Meal', f, :mealplan_meals
   .actions = f.submit

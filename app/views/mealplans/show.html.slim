@@ -3,9 +3,15 @@ p#notice = notice
 p
   strong Mealplan week:
   = @mealplan.mealplan_week
-p
-  strong User:
-  = @mealplan.user
+  
+  br
+  br
+  br
+  
+  strong Meals:
+  - @mealplan.meals.each do |meal|
+    .meal = meal.name
+
 
 = link_to 'Edit', edit_mealplan_path(@mealplan)
 '  |
