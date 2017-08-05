@@ -10,7 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224203311) do
+ActiveRecord::Schema.define(version: 20170805015431) do
+
+  create_table "ingredients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
+    t.string   "name"
+    t.string   "quantity"
+    t.integer  "meal_id"
+    t.float    "estimated_cost", limit: 24
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["meal_id"], name: "index_ingredients_on_meal_id", using: :btree
+  end
+
+  create_table "mealplan_meals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
+    t.integer  "meal"
+    t.integer  "mealplan_id"
+    t.integer  "meal_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["meal_id"], name: "index_mealplan_meals_on_meal_id", using: :btree
+    t.index ["mealplan_id"], name: "index_mealplan_meals_on_mealplan_id", using: :btree
+  end
+
+  create_table "mealplans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
+    t.datetime "mealplan_week"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["user_id"], name: "index_mealplans_on_user_id", using: :btree
+  end
+
+  create_table "meals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
+    t.string   "name"
+    t.integer  "meal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meal_id"], name: "index_tags_on_meal_id", using: :btree
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.string   "email",                  default: "", null: false
@@ -30,4 +72,9 @@ ActiveRecord::Schema.define(version: 20140224203311) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "ingredients", "meals"
+  add_foreign_key "mealplan_meals", "mealplans"
+  add_foreign_key "mealplan_meals", "meals"
+  add_foreign_key "mealplans", "users"
+  add_foreign_key "tags", "meals"
 end

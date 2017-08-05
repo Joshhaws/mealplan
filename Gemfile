@@ -11,6 +11,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'slim-rails'
 gem 'mysql2'
+gem "cocoon"
 
 
 

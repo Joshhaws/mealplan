@@ -27,7 +27,7 @@ class MealsController < ApplicationController
     @meal = Meal.new(meal_params)
 
     respond_to do |format|
-      if @meal.save
+      if @meal.save!
         format.html { redirect_to @meal, notice: 'Meal was successfully created.' }
         format.json { render :show, status: :created, location: @meal }
       else
@@ -69,6 +69,6 @@ class MealsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meal_params
-      params.require(:meal).permit(:name)
+      params.require(:meal).permit(:name, tags_attributes: [:id, :name, :_destroy], ingredients_attributes: [:id, :name, :quantity, :estimated_cost, :_destroy])
     end
 end

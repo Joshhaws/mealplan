@@ -1,0 +1,12 @@
+.tile.nested-fields
+  h3 Ingredient
+  .field
+    = f.label :name
+    = f.text_field :name, placeholder: "Name"
+  .field
+    = f.label :quantity
+    = f.number_field :quantity, placeholder: "Quantity"
+  .field
+    = f.label :estimated_cost
+    = f.number_field :estimated_cost, step: 0.01, placeholder: "Estimated Cost"  
+  = link_to_remove_association "Remove This ingredient", f

@@ -9,4 +9,14 @@
   .field
     = f.label :name
     = f.text_field :name
-  .actions = f.submit
+    #tags
+      = f.fields_for :tags do |tag|
+        = render 'tag_fields', f: tag
+      .links
+        = link_to_add_association '+ Add tags', f, :tags
+    #ingredients
+      = f.fields_for :ingredients do |ingredient|
+        = render 'ingredient_fields', f: ingredient
+      .links
+        = link_to_add_association '+ Add ingredient', f, :ingredients
+    = f.submit

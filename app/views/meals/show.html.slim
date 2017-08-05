@@ -3,6 +3,15 @@ p#notice = notice
 p
   strong Name:
   = @meal.name
+  
+  strong Esimated Cost:
+  = number_to_currency(@meal.ingredients.sum(:estimated_cost))
+  
+  - @meal.ingredients.each do |ingredient|
+    .ingredient-row
+      .ingredient-name = "Name: " + ingredient.name
+      .ingredient-quantity = "Quantity: " + ingredient.quantity.to_s
+      .ingredient-cost = "Estimated Cost: " + number_to_currency(ingredient.estimated_cost).to_s
 
 = link_to 'Edit', edit_meal_path(@meal)
 '  |

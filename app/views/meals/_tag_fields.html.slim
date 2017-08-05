@@ -1,0 +1,6 @@
+.tile.nested-fields
+  h3 Tag
+  .field
+    = f.label :name
+    = f.text_field :name, placeholder: "Name"
+  = link_to_remove_association "Remove This tag", f
