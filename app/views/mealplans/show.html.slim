@@ -8,11 +8,22 @@ p
   br
   br
   
-  strong Meals:
+  h2 Meals:
   - @mealplan.meals.each do |meal|
     .meal = meal.name
+    
+  h2 Ingredients:
+  - @mealplan.meals.each do |meal|
+    - meal.ingredients.each do |ingredient|
+      .ingredient = ingredient.name
+      
+
 
 
 = link_to 'Edit', edit_mealplan_path(@mealplan)
 '  |
 = link_to 'Back', mealplans_path
+'  |
+= link_to 'Sync', 'https://'+'www.wunderlist.com/oauth/authorize?client_id=80508684726fc9dea6ea&redirect_uri=mealplanlist.herokuapp.com&state=dfhgfdjgkfhjgf'
+'  |
+= link_to 'Send to Wunderlist', wunderlist_path(@mealplan.id)

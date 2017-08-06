@@ -61,6 +61,26 @@ class MealplansController < ApplicationController
     end
   end
 
+  def send_to_wunderlist
+
+
+    wl = Wunderlist::API.new({
+      access_token: 'fe14b36e5f50017cc3b39f45bd3fb950f2ec44cf28733084e485a7c35a6c',
+      client_id: '80508684726fc9dea6ea'
+    })
+
+    debugger
+    @wl_mealplan = Mealplan.find_by(id: params[:id])
+    @wl_mealplan.meals.each do |meal|
+      meal.ingredients.each do |ingredient|
+        task = wl.new_task('Grocery List', {title: ingredient.name, completed: false})
+        task.save
+      end
+    end
+
+    redirect_to mealplans_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mealplan
